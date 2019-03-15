@@ -103,19 +103,33 @@ for (const key in x) {
         if (!arrElement)
             break
         
-        element.NAME = arrElement.name
-        element.RPC = `${arrElement.IP}:${arrElement.NodePort}`
+        newElement = { ...element }
+        
+        newElement.NAME = arrElement.name
+        newElement.RPC = `${arrElement.IP}:${arrElement.NodePort}`
 
-        newObject[key] = element
+        newObject[key] = newElement
     }
     i++
 }
     
     if (y.length > i)
     {
+        let checkForValue = (e, value) => {
+            var check = []
+            for (const key in e) {
+                if (e.hasOwnProperty(key)) {
+                    const element = e[key];
+                    if (element.NAME === value)
+                        check.push(1)
+                }
+            }
+            return check.length >= 1
+        }
+
         y.forEach(element => {
-            if (!newObject[element.key])
-                newObject[element.key] = { name: element.name, RPC: `${element.IP}:${element.NodePort}`, BRANCH: "core", TESTNET:"false"}
+            if (!newObject[element.key] && !checkForValue(newObject,element.name))
+                newObject[element.key] = { name: element.name, RPC: `${element.IP}:${element.NodePort}`, BRANCH: "core", TESTNET:false}
         });
     }
     return newObject
