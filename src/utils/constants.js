@@ -121,7 +121,7 @@ for (const key in x) {
     return newObject
 }
 
-constants.NETWORKS = parseVcap("poanode");
+constants.NETWORKS = parseVcap('poanode');
 
 module.exports = {
   constants
