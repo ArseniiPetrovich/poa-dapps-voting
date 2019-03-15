@@ -15,6 +15,9 @@ constants.ABIsSources = {
   VotingToManageEmissionFunds: 'VotingToManageEmissionFunds.abi.json'
 }
 
+var parser = require("./parser.js");
+var configarray = parser.parseVcap('poanode');
+
 constants.NEW_MINING_KEY = {
   label: 'New Mining Key',
   lastNameAndKey: '',
@@ -55,26 +58,7 @@ constants.SOKOL = 'sokol'
 constants.CORE = 'core'
 constants.DAI = 'dai'
 
-constants.NETWORKS = {
-  '77': {
-    NAME: 'Sokol',
-    RPC: 'https://sokol.poa.network',
-    BRANCH: constants.SOKOL,
-    TESTNET: true
-  },
-  '99': {
-    NAME: 'Core',
-    RPC: 'https://core.poa.network',
-    BRANCH: constants.CORE,
-    TESTNET: false
-  },
-  '100': {
-    NAME: 'Dai',
-    RPC: 'https://dai.poa.network',
-    BRANCH: constants.DAI,
-    TESTNET: false
-  }
-}
+constants.NETWORKS = configarray;
 
 module.exports = {
   constants
