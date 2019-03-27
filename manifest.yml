@@ -1,0 +1,5 @@
+---
+applications:
+- name: dapp 
+  memory: 1G
+  random-route: true
